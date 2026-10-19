@@ -1,0 +1,10 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import NewBookingFlow from '../components/booking/NewBookingFlow.vue';
+---
+
+<MainLayout title="Personal Training | Κράτηση">
+    <div class="min-h-screen bg-zinc-50 py-12 lg:py-20 px-4">
+        <NewBookingFlow client:idle />
+    </div>
+</MainLayout>

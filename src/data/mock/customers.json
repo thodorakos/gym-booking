@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Demo Member 1",
+    "email": "member1@example.com",
+    "plan": "Δύναμη",
+    "sessions": 14,
+    "status": "Ενεργός"
+  },
+  {
+    "name": "Demo Member 2",
+    "email": "member2@example.com",
+    "plan": "Απώλεια λίπους",
+    "sessions": 9,
+    "status": "Ενεργός"
+  },
+  {
+    "name": "Demo Member 3",
+    "email": "member3@example.com",
+    "plan": "Κινητικότητα",
+    "sessions": 7,
+    "status": "Νέος"
+  },
+  {
+    "name": "Demo Member 4",
+    "email": "member4@example.com",
+    "plan": "Υψηλή Απόδοση",
+    "sessions": 18,
+    "status": "Ενεργός"
+  },
+  {
+    "name": "Demo Member 5",
+    "email": "member5@example.com",
+    "plan": "Αποκατάσταση",
+    "sessions": 6,
+    "status": "Παύση"
+  },
+  {
+    "name": "Demo Member 6",
+    "email": "member6@example.com",
+    "plan": "Δύναμη",
+    "sessions": 12,
+    "status": "Ενεργός"
+  },
+  {
+    "name": "Demo Member 7",
+    "email": "member7@example.com",
+    "plan": "Αρχάριοι",
+    "sessions": 5,
+    "status": "Νέος"
+  },
+  {
+    "name": "Demo Member 8",
+    "email": "member8@example.com",
+    "plan": "Υψηλή Απόδοση",
+    "sessions": 16,
+    "status": "Ενεργός"
+  }
+]

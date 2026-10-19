@@ -1,0 +1,103 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import LandingHero from '../components/LandingHero.astro';
+import LandingHighlights from '../components/LandingHighlights.vue';
+import TestimonialsCarousel from '../components/TestimonialsCarousel.vue';
+---
+
+<MainLayout title="Personal Training | Αρχική">
+  <LandingHero />
+  <LandingHighlights client:visible />
+
+  <!-- Programs Section - Minimal Typographic -->
+  <section id="programs" class="bg-transparent py-32 text-white relative z-10">
+    <div class="container mx-auto px-6 md:px-12">
+      <div class="mb-24 animate-on-scroll">
+        <h2 class="text-4xl font-bold uppercase tracking-tight md:text-6xl text-zinc-100">
+          Προγράμματα
+        </h2>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        <!-- Program 1 -->
+        <article class="group relative animate-on-scroll delay-100 border-t border-zinc-800 pt-8 transition-colors hover:border-swiss-orange/50">
+          <h3 class="mb-4 text-2xl font-medium text-white group-hover:text-swiss-orange transition-colors">Δύναμη</h3>
+          <p class="leading-relaxed text-zinc-500 group-hover:text-zinc-300 transition-colors max-w-sm">
+            Πρωτόκολλα προοδευτικής επιβάρυνσης για αύξηση μυϊκής δύναμης. Βάσεις που διαρκούν.
+          </p>
+        </article>
+
+        <!-- Program 2 -->
+        <article class="group relative animate-on-scroll delay-200 border-t border-zinc-800 pt-8 transition-colors hover:border-swiss-orange/50">
+          <h3 class="mb-4 text-2xl font-medium text-white group-hover:text-swiss-orange transition-colors">Λιποδιάλυση</h3>
+          <p class="leading-relaxed text-zinc-500 group-hover:text-zinc-300 transition-colors max-w-sm">
+            Στρατηγική προπόνηση και διατροφική καθοδήγηση. Μείωση λίπους, διατήρηση ενέργειας.
+          </p>
+        </article>
+
+        <!-- Program 3 -->
+        <article class="group relative animate-on-scroll delay-300 border-t border-zinc-800 pt-8 transition-colors hover:border-swiss-orange/50">
+          <h3 class="mb-4 text-2xl font-medium text-white group-hover:text-swiss-orange transition-colors">Αποκατάσταση</h3>
+          <p class="leading-relaxed text-zinc-500 group-hover:text-zinc-300 transition-colors max-w-sm">
+            Κινητικότητα και ασφαλής επανένταξη. Επίστρεψε στην προπόνηση με έλεγχο.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <div class="animate-on-scroll">
+    <TestimonialsCarousel client:visible />
+  </div>
+
+  <!-- Value Proposition - Minimal -->
+  <section class="bg-transparent py-32 text-white border-t border-zinc-900 relative z-10">
+    <div class="container mx-auto grid gap-16 px-6 md:grid-cols-12 md:px-12 items-start">
+      <div class="md:col-span-7">
+        <h3 class="mb-12 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+          Όχι απλά προπόνηση.<br/>
+          <span class="text-zinc-500">Πρόοδος.</span>
+        </h3>
+        
+        <div class="space-y-12">
+          <div class="flex gap-6 group">
+            <div class="h-auto w-0.5 bg-swiss-blue flex-none group-hover:w-1.5 transition-all duration-500"></div>
+            <div>
+              <h4 class="text-xl font-medium text-white mb-2">Εξατομικευμένο Πλάνο</h4>
+              <p class="text-zinc-500 leading-relaxed max-w-md">Δεν υπάρχουν έτοιμα προγράμματα. Όλα χτίζονται πάνω στις δικές σου ανάγκες και στόχους.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 group">
+            <div class="h-auto w-0.5 bg-swiss-orange flex-none group-hover:w-1.5 transition-all duration-500"></div>
+            <div>
+              <h4 class="text-xl font-medium text-white mb-2">Μετρήσεις Ακριβείας</h4>
+              <p class="text-zinc-500 leading-relaxed max-w-md">Trackable data κάθε 14 ημέρες για να ξέρουμε ακριβώς την πορεία μας και τι χρειάζεται αλλαγή.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 group">
+            <div class="h-auto w-0.5 bg-swiss-green flex-none group-hover:w-1.5 transition-all duration-500"></div>
+            <div>
+              <h4 class="text-xl font-medium text-white mb-2">Συνεχής Υποστήριξη</h4>
+              <p class="text-zinc-500 leading-relaxed max-w-md">Δεν είσαι μόνος σου. Είμαστε δίπλα σου σε κάθε επανάληψη, κάθε δυσκολία, κάθε νίκη.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-5 md:pl-12 pt-4">
+        <div class="p-8 border border-zinc-800 bg-zinc-900/20 backdrop-blur-sm">
+          <p class="text-2xl font-medium leading-tight text-white mb-8">
+            Ξεκίνα με ένα πλάνο αξιολόγησης και θέσε τους στόχους των επόμενων 90 ημερών.
+          </p>
+          <a href="/booking" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-white hover:text-swiss-orange transition-colors group">
+            Κλείσε Ραντεβού
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+```

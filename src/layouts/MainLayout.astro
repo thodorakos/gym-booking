@@ -1,0 +1,179 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="el" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-swiss-orange selection:text-white relative overflow-x-hidden">
+    <!-- Top Wave Gradient -->
+    <div class="absolute top-0 left-0 right-0 h-[500px] w-full pointer-events-none z-0 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-swiss-orange/15 via-swiss-orange/5 to-transparent animate-in slide-in-from-top-12 duration-[1500ms] ease-out-circ opacity-0 fade-in fill-mode-forwards"></div>
+    </div>
+
+    <!-- Right Side Scroll Reveal Gradient -->
+    <div id="right-glow" class="fixed right-0 top-0 h-full w-[800px] pointer-events-none z-0 mix-blend-screen transition-all duration-1000 ease-out opacity-0 translate-x-full">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-swiss-orange/20 via-swiss-orange/5 to-transparent blur-3xl"></div>
+    </div>
+    <header class="fixed top-0 z-50 w-full border-b border-white/5 bg-zinc-950/80 backdrop-blur-md">
+      <div class="container mx-auto flex h-16 items-center justify-between px-6 md:px-12">
+        <a href="/" class="text-sm font-black uppercase tracking-[0.2em] text-white transition hover:text-swiss-orange z-50 relative">
+          Personal Training
+        </a>
+        <nav class="hidden items-center gap-8 md:flex">
+          <a href="/" class="text-xs font-bold uppercase tracking-[0.14em] text-zinc-400 transition hover:text-white">Αρχική</a>
+          <a href="/admin" class="text-xs font-bold uppercase tracking-[0.14em] text-zinc-400 transition hover:text-white">Admin</a>
+          <a href="/booking" class="rounded-sm bg-white px-5 py-2 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:bg-zinc-200">
+            Κράτηση
+          </a>
+        </nav>
+        <!-- Mobile Menu Button (Hamburger) -->
+        <button id="menu-toggle" class="md:hidden text-white z-50 relative focus:outline-none">
+            <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 transition-transform duration-300">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+             <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 absolute top-0 left-0 opacity-0 -rotate-90 transition-all duration-300">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- Mobile Menu Overlay -->
+        <nav id="mobile-menu" class="fixed inset-0 bg-zinc-950 z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden w-screen h-screen pt-20">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-swiss-orange/10 via-zinc-950/50 to-zinc-950 pointer-events-none"></div>
+            <a href="/" class="mobile-link text-xl font-bold uppercase tracking-[0.14em] text-zinc-400 transition hover:text-white relative z-10 hover:scale-105 active:scale-95 duration-200">Αρχική</a>
+            <a href="/admin" class="mobile-link text-xl font-bold uppercase tracking-[0.14em] text-zinc-400 transition hover:text-white relative z-10 hover:scale-105 active:scale-95 duration-200">Admin</a>
+            <a href="/booking" class="mobile-link rounded-sm bg-white px-8 py-3 text-xl font-bold uppercase tracking-[0.14em] text-black transition hover:bg-zinc-200 relative z-10 hover:scale-105 active:scale-95 duration-200">
+                Κράτηση
+            </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pt-16">
+        <slot />
+    </main>
+
+    <footer class="border-t border-white/5 bg-zinc-950 py-12">
+      <div class="container mx-auto px-6 text-center md:px-12 md:text-left">
+        <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
+            <div class="text-xs uppercase tracking-[0.2em] text-zinc-500">
+                &copy; {new Date().getFullYear()} Personal Training Studio • Athens
+            </div>
+            <div class="flex gap-6 text-xs uppercase tracking-[0.12em] text-zinc-500">
+                <a href="#" class="hover:text-white transition">Instagram</a>
+                <a href="#" class="hover:text-white transition">Facebook</a>
+                <a href="/admin" class="hover:text-white transition">Staff Access</a>
+            </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      function initObserver() {
+        const hiddenElements = document.querySelectorAll('.animate-on-scroll');
+        hiddenElements.forEach((el) => observer.observe(el));
+      }
+
+      function initScrollGlow() {
+        const glow = document.getElementById('right-glow');
+        if (!glow) return;
+
+        const handleScroll = () => {
+          const scrollPosition = window.scrollY;
+          // Show after scrolling past hero (approx 500px)
+          if (scrollPosition > 500) {
+            glow.classList.remove('opacity-0', 'translate-x-full');
+            glow.classList.add('opacity-100', 'translate-x-[30%]');
+          } else {
+            glow.classList.add('opacity-0', 'translate-x-full');
+            glow.classList.remove('opacity-100', 'translate-x-[30%]');
+          }
+        };
+
+        window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        // Initial check
+        handleScroll();
+      }
+
+      function initMobileMenu() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openIcon = document.getElementById('menu-icon-open');
+        const closeIcon = document.getElementById('menu-icon-close');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        if (!menuToggle || !mobileMenu || !openIcon || !closeIcon) return;
+
+        let isMenuOpen = false;
+
+        const closeMenu = () => {
+            isMenuOpen = false;
+            mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = '';
+            openIcon.classList.remove('opacity-0', 'rotate-90');
+            closeIcon.classList.add('opacity-0', '-rotate-90');
+        };
+
+        const toggleMenu = (e: Event) => {
+            e.stopPropagation();
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+                openIcon.classList.add('opacity-0', 'rotate-90');
+                closeIcon.classList.remove('opacity-0', '-rotate-90');
+            } else {
+                closeMenu();
+            }
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initObserver();
+        initScrollGlow();
+        initMobileMenu();
+      });
+      document.addEventListener('astro:page-load', () => {
+        initObserver();
+        initScrollGlow();
+        initMobileMenu();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans">
+    <div class="grid min-h-screen grid-cols-1 lg:grid-cols-[260px_1fr]">
+      <!-- Sidebar -->
+      <aside class="border-r border-slate-200 bg-white px-6 py-8 shadow-sm z-20 hidden lg:block">
+        <div class="mb-10 flex items-center gap-2">
+            <div class="h-8 w-8 rounded bg-swiss-orange"></div>
+            <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-800">Admin Panel</p>
+        </div>
+        
+        <nav class="space-y-1">
+          <p class="px-2 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 mt-6">Overview</p>
+          <a class="flex items-center gap-3 rounded-md bg-slate-100 px-3 py-2 text-sm font-medium text-slate-900 transition hover:bg-slate-100" href="/admin">
+            Dashboard
+          </a>
+          <a class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900" href="#calendar">
+            Calendar
+          </a>
+          
+          <p class="px-2 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 mt-6">Management</p>
+          <a class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900" href="#users">
+            Customers
+          </a>
+          <a class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900" href="#workouts">
+            Workouts
+          </a>
+           <a class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900" href="#finance">
+            Finance
+          </a>
+          
+           <p class="px-2 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 mt-6">System</p>
+            <a class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900" href="/">
+            View Website
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex flex-col h-screen overflow-hidden">
+        <header class="flex h-16 flex-none items-center justify-between border-b border-slate-200 bg-white px-6 sm:px-8">
+          <div class="flex items-center gap-4 lg:hidden">
+              <button class="text-slate-500 hover:text-slate-700">
+                  <span class="sr-only">Menu</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  </svg>
+              </button>
+              <h1 class="text-lg font-bold tracking-tight text-slate-900">Dashboard</h1>
+          </div>
+          <h1 class="hidden text-lg font-bold tracking-tight text-slate-900 lg:block">Overview</h1>
+          
+          <div class="flex items-center gap-4">
+              <div class="h-8 w-8 overflow-hidden rounded-full bg-slate-200 border border-slate-300">
+                   <img src="https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff" alt="Admin" />
+              </div>
+          </div>
+        </header>
+        
+        <div class="flex-1 overflow-auto bg-slate-50 p-6 sm:p-8">
+          <slot />
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
